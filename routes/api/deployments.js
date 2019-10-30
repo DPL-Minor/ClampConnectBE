@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../../db/models');
-
+const passport = require('passport');
 
 /*Recieves a signal from the clamp and updates the DB acordingly*/
 router.post('/signal/', function(req, res, next) {
@@ -26,8 +26,8 @@ router.post('/signal/', function(req, res, next) {
 });
 
 /*return all deployments*/
-router.get('/all', function(req, res, next) {
-  models.Deployment.findAll({ where: req.body }).then(function(dl){
+router.get('/all', passport.authenticate('jwt', { session: false }), function(req, res, next) {
+    models.Deployment.findAll({ where: req.body }).then(function(dl){
     return dl;
    }).then(function(deploymentslist){
     //do something with employeeList

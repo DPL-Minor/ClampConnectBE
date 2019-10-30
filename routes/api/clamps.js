@@ -8,9 +8,9 @@ const passport = require('passport');
 router.get('/all', function(req, res, next) {
   models.Clamp.findAll({ where: req.body }).then(function(cl){
     return cl;
-   }).then(function(clamplist){
+   }).then(function(Clamplist){
     //do something with employeeList
-    res.status(200).json(clamplist);
+    res.status(200).json(Clamplist);
    });
 });
 

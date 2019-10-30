@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../../db/models');
-
+const passport = require('passport');
 
 /*return all deploymentresults*/
-router.get('/all', function(req, res, next) {
+router.get('/all', passport.authenticate('jwt', { session: false }), function(req, res, next) {
   models.DeploymentResult.findAll({ where: req.body }).then(function(drl){
     return drl;
    }).then(function(deploymentresultslist){

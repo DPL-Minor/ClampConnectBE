@@ -39,6 +39,7 @@ router.post('/login', async function(req, res, next) {
       let payload = { 
         id: user.id,
         role: user.role,
+        company: user.company,
         exp: Math.floor(Date.now() / 1000) + (60 * 60) };// token epxiration after 1 day:
       let token = jwt.sign(payload, jwtOptions.secretOrKey);
       var jwt_decode = require('jwt-decode');
